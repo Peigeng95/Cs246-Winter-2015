@@ -1,0 +1,2 @@
+Language: C++
+Des: Struct simulation of string.
