@@ -1,0 +1,2 @@
+Language: C++
+Des: Struct simlate array, and with struct functions.
