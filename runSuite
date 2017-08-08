@@ -1,0 +1,49 @@
+#!/bin/bash
+if [ ${#} -ne 2 ]; then
+  echo "incorrect number of command line arguments" 1>&2
+  exit 1
+fi
+
+for file in `cat "$1"`; do
+if [ -e "$file.args" ]; then
+  if [ -r "$file.args" ];then
+      if [ -r "$file.in" ] && [ -r "$file.out" ]; then
+      diff <("$2" `cat "$file.args"` < "$file.in") <(cat "$file.out") > /dev/null
+      a=$?
+      if [ $a -ne 0 ];then
+        echo "Test failed: $file"
+        echo "Input:"
+        cat "$file.in"
+        echo "Expected:"
+        cat "$file.out"
+        echo "Actual:"
+        echo "`"$2" < "$file.in"`"
+      fi
+    else
+      echo "missing or unreadable .in or .out files." 1>&2
+      exit 1
+    fi
+  else 
+     echo "missing or unreadable .in or .out files." 1>&2
+     exit 1
+  fi
+else
+  if [ -r "$file.in" ] && [ -r "$file.out" ]; then
+    diff <("$2" < "$file.in") <(cat "$file.out") > /dev/null
+    a=$?
+    if [ $a -ne 0 ];then
+      echo "Test failed: $file"
+      echo "Input:"
+      cat "$file.in"
+      echo "Expected:"
+      cat "$file.out"
+      echo "Actual:"
+      echo "`"$2" < "$file.in"`"
+    fi
+  else
+    echo "missing or unreadable .in or .out files." 1>&2
+    exit 1
+  fi
+fi
+done
+exit 0

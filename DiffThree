@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ "$1" = "$2" ]; then
+	if [ "$2" = "$3" ]; then
+		echo "The same."
+	else
+		echo "Different."
+	fi
+else
+	echo "Different."
+fi
