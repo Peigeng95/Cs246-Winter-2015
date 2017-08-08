@@ -1,0 +1,2 @@
+Language: C
+Des: Program to calculate student's final mark. given 5 assignments' and 2 exams' mark and weight.
