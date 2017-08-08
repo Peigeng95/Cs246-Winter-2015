@@ -1,0 +1,2 @@
+#!/bin/bash
+egrep "^(#include|#define)" myfile.cc | head -10

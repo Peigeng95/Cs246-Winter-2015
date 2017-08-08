@@ -1,0 +1,1 @@
+sed -n '80,100p' < myfile.txt

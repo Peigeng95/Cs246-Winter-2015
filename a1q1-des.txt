@@ -1,0 +1,2 @@
+Language: script
+Des: simple scripts
